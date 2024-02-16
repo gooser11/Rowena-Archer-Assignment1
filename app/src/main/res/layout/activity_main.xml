@@ -6,40 +6,85 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-
     <SurfaceView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         />
 
+    <!-- rgb seek bars -->
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/red"
+        />
     <SeekBar
+        android:id="@+id/redBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="255"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/green"
+        />
 
     <SeekBar
+        android:id="@+id/greenBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="255" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blue"
+        />
+
+    <SeekBar
+        android:id="@+id/blueBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="255" />
 
-    <SeekBar
+    <!-- Hair options (Needs 3 choices) -->
+    <Spinner
+        android:id="@+id/hairOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="255" />
+        android:spinnerMode="dropdown"
+        />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/hairButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hair"
+            />
+        <RadioButton
+            android:id="@+id/eyesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eyes"
+            />
+        <RadioButton
+            android:id="@+id/skinButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skin"
+            />
+    </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <Button
+        android:id="@+id/randomize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/random_face"
+        />
 
     </LinearLayout>

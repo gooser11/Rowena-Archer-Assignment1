@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Assignment 1 - Part A</string>
     <string name="randomText">Yayy</string>
+    <string name="random_face">Random Face</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+
+    <!-- code from https://www.youtube.com/watch?v=on_OrrX7Nw4 -->
+    <!-- "Text Spinner - Android Studio Tutorial" by Coding in Flow-->
+    <string-array name="hairs">
+        <item>Bald</item>
+        <item>Bob Cut</item>
+        <item>Cropped</item>
+        <item>Mullet</item>
+    </string-array>
+
+
 </resources>
