@@ -48,14 +48,14 @@
         android:layout_height="wrap_content"
         android:max="255" />
 
-    <!-- Hair options (Needs 3 choices) -->
+    <!-- Hair options -->
     <Spinner
         android:id="@+id/hairOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"
         />
-
+    <!-- body part radio buttons -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

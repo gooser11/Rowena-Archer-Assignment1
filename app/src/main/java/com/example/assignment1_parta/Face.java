@@ -16,10 +16,10 @@ public class Face {
     int hairStyle;
     Random rand = new Random();
 
-    public Face(){
+    public Face(){ //ctor
         randomize();
     }
-    public void randomize(){
+    public void randomize(){// randomize all values
         skinColor = rand.nextInt(255);
         eyeColor = rand.nextInt(255);
         hairColor = rand.nextInt(255);
