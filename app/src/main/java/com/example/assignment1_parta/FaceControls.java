@@ -10,7 +10,7 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
 
     private FaceModel contrModel;
 
-    public faceControls(Face aFaceView){
+    public FaceControls(Face aFaceView){
         contrView = aFaceView;
         contrModel = contrView.getFaceModel();
     }
@@ -19,7 +19,9 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
     @Override
     public void onClick(View v) {
         Log.d("face", "randomize!");
+
         // randomize face on click of button
+
         contrView.invalidate();
     }
 
