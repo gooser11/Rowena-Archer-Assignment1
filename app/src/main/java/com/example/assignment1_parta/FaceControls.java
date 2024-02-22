@@ -4,23 +4,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 
-public class faceControls implements View.OnClickListener, SeekBar.OnSeekBarChangeListener{
+public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChangeListener{
 
-private Face contrView;
+    private Face contrView;
 
-// idk if I'll really need a model class
-//private Face contrModel;
+    private FaceModel contrModel;
 
-public faceControls(Face aFaceView){
-    contrView = aFaceView;
-    //model
-}
+    public faceControls(Face aFaceView){
+        contrView = aFaceView;
+        contrModel = contrView.getFaceModel();
+    }
 
 
     @Override
     public void onClick(View v) {
         Log.d("face", "randomize!");
         // randomize face on click of button
+        contrView.invalidate();
     }
 
     @Override

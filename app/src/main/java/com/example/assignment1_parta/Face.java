@@ -25,6 +25,8 @@ public class Face extends SurfaceView {
     Paint eyeWhites = new Paint();
     Random rand = new Random();
 
+    private FaceModel faceData;
+
     public Face(Context context, AttributeSet attrs){
         super(context, attrs); //ctor
         setWillNotDraw(false);
@@ -35,7 +37,7 @@ public class Face extends SurfaceView {
         eyePaint.setColor(eyeColor);
         hairPaint.setColor(hairColor);
         eyeWhites.setColor(0xFFFFFF); // plain white
-
+        faceData = new FaceModel();
     }
     public void randomize(){// randomize all values
         skinColor = rand.nextInt(0xFFFFFF);
@@ -43,12 +45,20 @@ public class Face extends SurfaceView {
         hairColor = rand.nextInt(0xFFFFFF);
         hairStyle = rand.nextInt(0xFFFFFF);
     }
+
     public void onDraw(Canvas canvas){
         // draw head
-
+        canvas.drawOval(0, 0, 0, 0, skinPaint);
         // draw eyes
-
+        for(int i = 0; i < 2; i++){
+            canvas.drawOval(0, 0, 0, 0, eyeWhites);
+            canvas.drawOval(0, 0, 0, 0, eyePaint);
+        }
         // draw hair
+    }
+
+    public FaceModel getFaceModel(){
+        return this.faceData;
     }
 
 }
