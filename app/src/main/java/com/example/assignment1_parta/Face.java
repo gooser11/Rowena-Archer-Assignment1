@@ -117,7 +117,6 @@ public class Face extends SurfaceView {
         // there is a much prettier way to do this but I am too lazy
 
         // skin
-
         int randColor = Color.rgb((int) (Math.random() * 256),
                 (int) (Math.random() * 256),
                 (int) (Math.random() * 256));

@@ -35,7 +35,7 @@ public class FaceControls implements
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+        // set color values in face model to progress bar values
         // Skin
         if ((seekBar.getId() == R.id.redBar) && (contrModel.partChoice == R.id.skinButton)){
             contrModel.redValSkin = progress;
@@ -73,12 +73,11 @@ public class FaceControls implements
             contrModel.blueValEyes = progress;
 
         }
-
+        // send new colors to face view
         contrView.skinColor = contrModel.changeColor(contrModel.redValSkin, contrModel.greenValSkin, contrModel.blueValSkin);
         contrView.hairColor = contrModel.changeColor(contrModel.redValHair, contrModel.greenValHair, contrModel.blueValHair);
         contrView.eyeColor = contrModel.changeColor(contrModel.redValEyes, contrModel.greenValEyes, contrModel.blueValEyes);
 
-        System.out.println(contrView.skinColor);
         contrView.invalidate();
     }
 
@@ -99,7 +98,7 @@ public class FaceControls implements
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         contrModel.partChoice = checkedId;
 
-        // when radio button is changed, change
+        // when radio button is changed, change progress
         if (checkedId == R.id.hairButton){
             red = myActivity.findViewById(R.id.redBar);
             red.setProgress(contrModel.redValHair);
@@ -141,6 +140,8 @@ public class FaceControls implements
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // code from https://www.youtube.com/watch?v=on_OrrX7Nw4
+        // "Text Spinner - Android Studio Tutorial" by Coding in FLow
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
         contrModel.hairChoice = position;
