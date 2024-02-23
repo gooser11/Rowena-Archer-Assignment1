@@ -15,12 +15,13 @@ public class FaceControls implements
         AdapterView.OnItemSelectedListener{
 
     private Face contrView;
-
     private FaceModel contrModel;
+    private MainActivity myActivity;
 
-    public FaceControls(Face aFaceView){
+    public FaceControls(Face aFaceView, MainActivity initActivity){
         contrView = aFaceView;
         contrModel = contrView.getFaceModel();
+        myActivity = initActivity;
     }
 
     @Override
@@ -28,11 +29,13 @@ public class FaceControls implements
         Log.d("face", "randomize!");
         contrView.randomize();
         contrModel.hairChoice = contrView.randHair;
+
         contrView.invalidate();
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
         // Skin
         if ((seekBar.getId() == R.id.redBar) && (contrModel.partChoice == R.id.skinButton)){
             contrModel.redValSkin = progress;
@@ -41,6 +44,7 @@ public class FaceControls implements
             contrModel.greenValSkin = progress;
         }
         else if ((seekBar.getId() == R.id.blueBar) && (contrModel.partChoice == R.id.skinButton)){
+
             contrModel.blueValSkin = progress;
         }
         //Hair
@@ -88,13 +92,50 @@ public class FaceControls implements
         //nothing
     }
 
+    SeekBar red;
+    SeekBar green;
+    SeekBar blue;
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         contrModel.partChoice = checkedId;
+
+        // when radio button is changed, change
+        if (checkedId == R.id.hairButton){
+            red = myActivity.findViewById(R.id.redBar);
+            red.setProgress(contrModel.redValHair);
+
+            green = myActivity.findViewById(R.id.greenBar);
+            green.setProgress(contrModel.greenValHair);
+
+            blue = myActivity.findViewById(R.id.blueBar);
+            blue.setProgress(contrModel.blueValHair);
+        }
+        else if (checkedId == R.id.eyesButton){
+            red = myActivity.findViewById(R.id.redBar);
+            red.setProgress(contrModel.redValEyes);
+
+            green = myActivity.findViewById(R.id.greenBar);
+            green.setProgress(contrModel.greenValEyes);
+
+            blue = myActivity.findViewById(R.id.blueBar);
+            blue.setProgress(contrModel.blueValEyes);
+        }
+        else if (checkedId == R.id.skinButton){
+            red = myActivity.findViewById(R.id.redBar);
+            red.setProgress(contrModel.redValSkin);
+
+            green = myActivity.findViewById(R.id.greenBar);
+            green.setProgress(contrModel.greenValSkin);
+
+            blue = myActivity.findViewById(R.id.blueBar);
+            blue.setProgress(contrModel.blueValSkin);
+        }
+
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
         //nothing
     }
 

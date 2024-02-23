@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Face myFaceView = findViewById(R.id.faceView);
-        FaceControls control = new FaceControls(myFaceView);
+        FaceControls control = new FaceControls(myFaceView, this);
 
         // code from https://www.youtube.com/watch?v=on_OrrX7Nw4
         // "Text Spinner - Android Studio Tutorial" by Coding in FLow
