@@ -65,36 +65,58 @@ public class Face extends SurfaceView {
 
 
 
-    public void drawHair(){
+    public void drawHair(Canvas c){
+
         // draw bob
+        c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
+        c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
+        c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
 
         // cropped
+        c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
 
         // mullet
-
+        c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
+        c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
+        c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
 
 
     }
     public void randomize(){// randomize all values
-        skinColor = rand.nextInt(0xFFFFFF);
-        eyeColor = rand.nextInt(0xFFFFFF);
-        hairColor = rand.nextInt(0xFFFFFF);
-        hairStyle = rand.nextInt(0xFFFFFF);
 
+        //taken from notes on moodle:
+        // https://learning.up.edu/moodle/pluginfile.php/2398437/mod_resource/content/0/Spot.java
 
-        /*int color = Color.rgb((int) (Math.random() * 256),
+        // there is a much prettier way to do this but I am too lazy
+        int randColor = Color.rgb((int) (Math.random() * 256),
                 (int) (Math.random() * 256),
                 (int) (Math.random() * 256));
-        */
+        skinColor = randColor;
+
+        randColor = Color.rgb((int) (Math.random() * 256),
+                (int) (Math.random() * 256),
+                (int) (Math.random() * 256));
+        eyeColor = randColor;
+
+        randColor = Color.rgb((int) (Math.random() * 256),
+                (int) (Math.random() * 256),
+                (int) (Math.random() * 256));
+        hairColor = randColor;
+
+        randColor = Color.rgb((int) (Math.random() * 256),
+                (int) (Math.random() * 256),
+                (int) (Math.random() * 256));
+        hairStyle = randColor;
     }
 
 
     public void onDraw(Canvas canvas){
         // draw head
         skinPaint.setColor(skinColor);
-        canvas.drawOval(250f, 400f, 1000f, 1300f, skinPaint);
-        // draw eyes
+        canvas.drawOval(headLeft, headTop, headRight, headBottom, skinPaint);
 
+        // draw eyes
+        eyePaint.setColor(eyeColor);
         float incEyes = 200f;//space between eyes
         for(int i = 0; i < 2; i++){
             canvas.drawOval(headLeft + incEyes, headTop + 300f, headLeft + incEyes+140, headTop + 400f, eyeWhites);
@@ -104,8 +126,9 @@ public class Face extends SurfaceView {
 
         //draw mouth
         canvas.drawLine(headLeft + incEyes, headTop + 600f, headRight - incEyes, headTop + 600f, mouthPaint);
+
         // draw hair
-        drawHair();
+        drawHair(canvas);
     }
 
     public FaceModel getFaceModel(){

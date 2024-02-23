@@ -26,8 +26,7 @@ public class FaceControls implements
     @Override
     public void onClick(View v) {
         Log.d("face", "randomize!");
-
-        // randomize face on click of button
+        contrView.randomize();
 
         contrView.invalidate();
     }
@@ -97,14 +96,12 @@ public class FaceControls implements
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        Log.d("face", "body choice!");
         contrModel.partChoice = checkedId;
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.d("face", "bodied part!");
-
+        //nothing
     }
 
     @Override

@@ -25,15 +25,10 @@ public class FaceModel {
     public int partChoice;// holds the Id of whatever Radio Button is chosen
     FaceModel() {}
 
-    //https://www.w3schools.blog/rgb-to-hex-java
-
-
     //taken from notes on moodle:
     // https://learning.up.edu/moodle/pluginfile.php/2398437/mod_resource/content/0/Spot.java
     public int changeColor(int r, int g, int b){
         int newColor = Color.rgb(r,g,b);
-        String bub = Integer.toHexString(newColor);
-        //int decVal = (int) Long.parseLong(bub, 16);
         return newColor;
     }
 }
