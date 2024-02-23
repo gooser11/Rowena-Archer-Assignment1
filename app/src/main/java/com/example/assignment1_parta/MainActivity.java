@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.SeekBar;
@@ -16,7 +18,7 @@ import android.widget.Button;
  * @author Rowena Archer
  * @version 2024 Feb 15
  */
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.hairs, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(control);
 
+        //rando
         Button random = findViewById(R.id.randomize);
         random.setOnClickListener(control);
 
+        //Seekbars
         SeekBar redBar = findViewById(R.id.redBar);
         redBar.setOnSeekBarChangeListener(control);
 
@@ -46,16 +50,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         SeekBar blueBar = findViewById(R.id.blueBar);
         blueBar.setOnSeekBarChangeListener(control);
 
+        //Radio buttons
+        RadioButton hair = findViewById(R.id.hairButton);
+        hair.setOnCheckedChangeListener(control);
+
+        RadioButton eyes = findViewById(R.id.eyesButton);
+        eyes.setOnCheckedChangeListener(control);
+
+        RadioButton skin = findViewById(R.id.skinButton);
+        skin.setOnCheckedChangeListener(control);
+
+        // radio group control can check which button the group has changed to!
+        RadioGroup groupies = findViewById(R.id.buttonGroup);
+        groupies.setOnCheckedChangeListener(control);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

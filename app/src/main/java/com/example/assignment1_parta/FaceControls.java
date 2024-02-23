@@ -2,10 +2,17 @@ package com.example.assignment1_parta;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
-public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener {
+public class FaceControls implements
+        View.OnClickListener, SeekBar.OnSeekBarChangeListener,
+        RadioButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener,
+        AdapterView.OnItemSelectedListener{
 
     private Face contrView;
 
@@ -16,7 +23,6 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
         contrModel = contrView.getFaceModel();
     }
 
-
     @Override
     public void onClick(View v) {
         Log.d("face", "randomize!");
@@ -26,11 +32,10 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
         contrView.invalidate();
     }
 
-
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.d("face", "scroll!");
+        // need to differentiate between different body parts
         if (seekBar.getId() == R.id.redBar){
             contrModel.redVal = progress;
         }
@@ -55,7 +60,24 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
+        Log.d("face", "body choice!");
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Log.d("face", "bodied part!");
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }
