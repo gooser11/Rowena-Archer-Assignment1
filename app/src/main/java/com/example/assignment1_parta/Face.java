@@ -66,21 +66,27 @@ public class Face extends SurfaceView {
 
 
     public void drawHair(Canvas c){
+        hairPaint.setColor(hairColor);
 
-        // draw bob
-        c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
-        c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
-        c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
-
-        // cropped
-        c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
-
-        // mullet
-        c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
-        c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
-        c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
-
-
+        if (faceData.hairChoice == 0){
+            // bald
+        }
+        else if (faceData.hairChoice == 1){
+            // draw bob
+            c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
+            c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
+            c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
+        }
+        else if (faceData.hairChoice == 2){
+            // cropped
+            c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
+        }
+        else if (faceData.hairChoice == 3){
+            // mullet
+            c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
+            c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
+            c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
+        }
     }
     public void randomize(){// randomize all values
 

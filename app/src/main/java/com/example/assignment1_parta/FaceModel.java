@@ -23,6 +23,7 @@ public class FaceModel {
 
     public int hairChoice; // holds the Id of whatever hair is chosen
     public int partChoice;// holds the Id of whatever Radio Button is chosen
+
     FaceModel() {}
 
     //taken from notes on moodle:
