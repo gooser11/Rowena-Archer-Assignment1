@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
+
 import java.util.Random;
 
 /**
@@ -14,7 +15,19 @@ import java.util.Random;
  * @version 2024 Feb 15
  */
 
+
 public class Face extends SurfaceView {
+    //Constants to define the dimensions of character's head
+
+    public static final float headTop = 100f; //y val
+    public static final float headLeft = 100f;
+    public static final float headRight = 200f;
+    public static final float headBottom = 200f;
+
+
+    //paints and color values to draw diff parts of face
+    //colors will be set in a the model class, where we will convert the decimal values to hex
+
     public int skinColor;
     public int eyeColor;
     public int hairColor;
@@ -33,7 +46,7 @@ public class Face extends SurfaceView {
         randomize();
 
         //setup palette
-        skinPaint.setColor(skinColor);
+        skinPaint.setColor(0x00FF00); // change later
         eyePaint.setColor(eyeColor);
         hairPaint.setColor(hairColor);
         eyeWhites.setColor(0xFFFFFF); // plain white
@@ -51,13 +64,14 @@ public class Face extends SurfaceView {
 
     public void onDraw(Canvas canvas){
         // draw head
-        canvas.drawOval(50f, 50f, 100f, 100f, skinPaint);
+        canvas.drawOval(100f, 100f, 200f, 200f, skinPaint);
         // draw eyes
         for(int i = 0; i < 2; i++){
             canvas.drawOval(0, 0, 0, 0, eyeWhites);
             canvas.drawOval(0, 0, 0, 0, eyePaint);
         }
         // draw hair
+
     }
 
     public FaceModel getFaceModel(){

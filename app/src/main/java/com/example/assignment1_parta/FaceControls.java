@@ -25,6 +25,8 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
         contrView.invalidate();
     }
 
+
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.d("face", "scroll!");

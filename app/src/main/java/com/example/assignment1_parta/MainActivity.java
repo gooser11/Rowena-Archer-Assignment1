@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Face myFaceView = findViewById(R.id.faceView);
+
         // code from https://www.youtube.com/watch?v=on_OrrX7Nw4
         // "Text Spinner - Android Studio Tutorial" by Coding in FLow
         Spinner spinner = findViewById(R.id.hairOptions);
@@ -28,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        Face ourFace = findViewById(R.id.faceView);
     }
 
     @Override
