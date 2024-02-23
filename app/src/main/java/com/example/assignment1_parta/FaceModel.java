@@ -21,7 +21,7 @@ public class FaceModel {
     public int blueValEyes;
 
 
-    public int hairChoice; // holds the Id of whatever hair is chosen
+    public int hairChoice=0; // holds the val of whatever hair is chosen (0-3)
     public int partChoice;// holds the Id of whatever Radio Button is chosen
 
     FaceModel() {}

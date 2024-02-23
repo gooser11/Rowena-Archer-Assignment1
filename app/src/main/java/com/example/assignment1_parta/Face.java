@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
@@ -19,29 +20,23 @@ import java.util.Random;
  * @version 2024 Feb 15
  */
 
-
 public class Face extends SurfaceView {
     //Constants to define the dimensions of character's head
-
     public static final float headTop = 400f; //y val
     public static final float headLeft = 250f;
     public static final float headRight = 1000f;
     public static final float headBottom = 1300f;
+    int randHair; // value used to randomize hair
 
-
-    //paints and color values to draw diff parts of face
-    //colors will be set in a the model class, where we will convert the decimal values to hex
-
+    // Paints and colors
     public int skinColor;
     public int eyeColor;
     public int hairColor;
-    public int hairStyle;
     Paint skinPaint = new Paint();
     Paint eyePaint = new Paint();
     Paint hairPaint = new Paint();
     Paint eyeWhites = new Paint();
     Paint mouthPaint = new Paint();
-    Random rand = new Random();
 
     private FaceModel faceData;
 
@@ -55,15 +50,12 @@ public class Face extends SurfaceView {
         eyePaint.setColor(eyeColor);
         hairPaint.setColor(hairColor);
         eyeWhites.setColor(WHITE);
-        mouthPaint.setColor(0xFF000000); // black
+        mouthPaint.setColor(BLACK);
         faceData = new FaceModel();
 
-        setBackgroundColor(Color.WHITE);  //better than black default
+        setBackgroundColor(Color.WHITE);
 
     }
-
-
-
 
     public void drawHair(Canvas c){
         hairPaint.setColor(hairColor);
@@ -72,10 +64,13 @@ public class Face extends SurfaceView {
             // bald
         }
         else if (faceData.hairChoice == 1){
-            // draw bob
-            c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
-            c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
-            c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
+            // draw bob cut
+            RectF bobTop = new RectF(headLeft-50f, headTop-50f, headRight+50f, headTop+300f);
+
+            c.drawArc(bobTop, 90, 340, true, hairPaint);
+            //c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
+            c.drawRect(headLeft-50f, headTop, headLeft+100f, headTop+900f, hairPaint);
+            c.drawRect(headRight-100f, headTop, headRight+50f, headTop+900f, hairPaint);
         }
         else if (faceData.hairChoice == 2){
             // cropped
@@ -86,35 +81,9 @@ public class Face extends SurfaceView {
             c.drawRect(headLeft-50f, headTop-50f, headRight+50f, headTop+200f, hairPaint);
             c.drawRect(headLeft-50f, headTop-50f, headLeft+100f, headTop+900f, hairPaint);
             c.drawRect(headRight-100f, headTop-50f, headRight+50f, headTop+900f, hairPaint);
+
         }
     }
-    public void randomize(){// randomize all values
-
-        //taken from notes on moodle:
-        // https://learning.up.edu/moodle/pluginfile.php/2398437/mod_resource/content/0/Spot.java
-
-        // there is a much prettier way to do this but I am too lazy
-        int randColor = Color.rgb((int) (Math.random() * 256),
-                (int) (Math.random() * 256),
-                (int) (Math.random() * 256));
-        skinColor = randColor;
-
-        randColor = Color.rgb((int) (Math.random() * 256),
-                (int) (Math.random() * 256),
-                (int) (Math.random() * 256));
-        eyeColor = randColor;
-
-        randColor = Color.rgb((int) (Math.random() * 256),
-                (int) (Math.random() * 256),
-                (int) (Math.random() * 256));
-        hairColor = randColor;
-
-        randColor = Color.rgb((int) (Math.random() * 256),
-                (int) (Math.random() * 256),
-                (int) (Math.random() * 256));
-        hairStyle = randColor;
-    }
-
 
     public void onDraw(Canvas canvas){
         // draw head
@@ -136,9 +105,34 @@ public class Face extends SurfaceView {
         // draw hair
         drawHair(canvas);
     }
-
     public FaceModel getFaceModel(){
         return this.faceData;
     }
 
+    public void randomize(){// randomize all values
+
+        //taken from notes on moodle:
+        // https://learning.up.edu/moodle/pluginfile.php/2398437/mod_resource/content/0/Spot.java
+
+        // there is a much prettier way to do this but I am too lazy
+
+        // skin
+        int randColor = Color.rgb((int) (Math.random() * 256),
+                (int) (Math.random() * 256),
+                (int) (Math.random() * 256));
+        skinColor = randColor;
+        // eyes
+        randColor = Color.rgb((int) (Math.random() * 256),
+                (int) (Math.random() * 256),
+                (int) (Math.random() * 256));
+        eyeColor = randColor;
+        // hair
+        randColor = Color.rgb((int) (Math.random() * 256),
+                (int) (Math.random() * 256),
+                (int) (Math.random() * 256));
+        hairColor = randColor;
+
+        randHair = (int) (Math.random() * 4); // randomize hairstyle
+
+    }
 }

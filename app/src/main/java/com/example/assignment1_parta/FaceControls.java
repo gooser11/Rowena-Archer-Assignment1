@@ -27,26 +27,20 @@ public class FaceControls implements
     public void onClick(View v) {
         Log.d("face", "randomize!");
         contrView.randomize();
-
+        contrModel.hairChoice = contrView.randHair;
         contrView.invalidate();
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int xmlRedBar = R.id.redBar;
-        int xmlGreenBar = R.id.greenBar;
-        int xmlBlueBar = R.id.blueBar;
-
-        int currSeekbar = seekBar.getId();
-
         // Skin
-        if ((currSeekbar == xmlRedBar) && (contrModel.partChoice == R.id.skinButton)){
+        if ((seekBar.getId() == R.id.redBar) && (contrModel.partChoice == R.id.skinButton)){
             contrModel.redValSkin = progress;
         }
-        else if ((currSeekbar == xmlGreenBar) && (contrModel.partChoice == R.id.skinButton)){
+        else if ((seekBar.getId() == R.id.greenBar) && (contrModel.partChoice == R.id.skinButton)){
             contrModel.greenValSkin = progress;
         }
-        else if ((currSeekbar == xmlBlueBar) && (contrModel.partChoice == R.id.skinButton)){
+        else if ((seekBar.getId() == R.id.blueBar) && (contrModel.partChoice == R.id.skinButton)){
             contrModel.blueValSkin = progress;
         }
         //Hair
@@ -109,7 +103,6 @@ public class FaceControls implements
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
         contrModel.hairChoice = position;
-        System.out.println(position);
         contrView.invalidate();
     }
 
