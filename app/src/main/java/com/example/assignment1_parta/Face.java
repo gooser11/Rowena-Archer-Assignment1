@@ -40,6 +40,7 @@ public class Face extends SurfaceView {
     Paint eyePaint = new Paint();
     Paint hairPaint = new Paint();
     Paint eyeWhites = new Paint();
+    Paint mouthPaint = new Paint();
     Random rand = new Random();
 
     private FaceModel faceData;
@@ -50,18 +51,26 @@ public class Face extends SurfaceView {
         randomize();
 
         //setup palette
-        skinPaint.setColor(GREEN); // change later
-        eyePaint.setColor(BLACK);
+        skinPaint.setColor(skinColor);
+        eyePaint.setColor(eyeColor);
         hairPaint.setColor(hairColor);
-        eyeWhites.setColor(WHITE); // plain white
+        eyeWhites.setColor(WHITE);
+        mouthPaint.setColor(0xFF000000); // black
         faceData = new FaceModel();
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
     }
 
-    public void drawHair(){
 
+
+
+    public void drawHair(){
+        // draw bob
+
+        // cropped
+
+        // mullet
 
 
 
@@ -71,10 +80,18 @@ public class Face extends SurfaceView {
         eyeColor = rand.nextInt(0xFFFFFF);
         hairColor = rand.nextInt(0xFFFFFF);
         hairStyle = rand.nextInt(0xFFFFFF);
+
+
+        /*int color = Color.rgb((int) (Math.random() * 256),
+                (int) (Math.random() * 256),
+                (int) (Math.random() * 256));
+        */
     }
+
 
     public void onDraw(Canvas canvas){
         // draw head
+        skinPaint.setColor(skinColor);
         canvas.drawOval(250f, 400f, 1000f, 1300f, skinPaint);
         // draw eyes
 
@@ -86,9 +103,9 @@ public class Face extends SurfaceView {
         }
 
         //draw mouth
-        canvas.drawLine(headLeft + incEyes, headTop + 600f, headRight - incEyes, headTop + 600f, eyePaint);
+        canvas.drawLine(headLeft + incEyes, headTop + 600f, headRight - incEyes, headTop + 600f, mouthPaint);
         // draw hair
-
+        drawHair();
     }
 
     public FaceModel getFaceModel(){

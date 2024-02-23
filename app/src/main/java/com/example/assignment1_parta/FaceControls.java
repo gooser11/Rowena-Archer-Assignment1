@@ -34,17 +34,54 @@ public class FaceControls implements
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        Log.d("face", "scroll!");
-        // need to differentiate between different body parts
-        if (seekBar.getId() == R.id.redBar){
-            contrModel.redVal = progress;
+        int xmlRedBar = R.id.redBar;
+        int xmlGreenBar = R.id.greenBar;
+        int xmlBlueBar = R.id.blueBar;
+
+        int currSeekbar = seekBar.getId();
+
+        // Skin
+        if ((currSeekbar == xmlRedBar) && (contrModel.partChoice == R.id.skinButton)){
+            contrModel.redValSkin = progress;
         }
-        else if (seekBar.getId() == R.id.greenBar){
-            contrModel.greenVal = progress;
+        else if ((currSeekbar == xmlGreenBar) && (contrModel.partChoice == R.id.skinButton)){
+            contrModel.greenValSkin = progress;
         }
-        else if (seekBar.getId() == R.id.blueBar){
-            contrModel.blueVal = progress;
+        else if ((currSeekbar == xmlBlueBar) && (contrModel.partChoice == R.id.skinButton)){
+            contrModel.blueValSkin = progress;
         }
+        //Hair
+        else if ((seekBar.getId() == R.id.redBar) && (contrModel.partChoice == R.id.hairButton)){
+            contrModel.redValHair = progress;
+
+        }
+        else if ((seekBar.getId() == R.id.greenBar) && (contrModel.partChoice == R.id.hairButton)){
+            contrModel.greenValHair = progress;
+
+        }
+        else if ((seekBar.getId() == R.id.blueBar) && (contrModel.partChoice == R.id.hairButton)){
+            contrModel.blueValHair = progress;
+
+        }
+        //Eyes
+        else if ((seekBar.getId() == R.id.redBar) && (contrModel.partChoice == R.id.eyesButton)){
+            contrModel.redValEyes = progress;
+
+        }
+        else if ((seekBar.getId() == R.id.greenBar) && (contrModel.partChoice == R.id.eyesButton)){
+            contrModel.greenValEyes = progress;
+
+        }
+        else if ((seekBar.getId() == R.id.blueBar) && (contrModel.partChoice == R.id.eyesButton)){
+            contrModel.blueValEyes = progress;
+
+        }
+
+        contrView.skinColor = contrModel.changeColor(contrModel.redValSkin, contrModel.greenValSkin, contrModel.blueValSkin);
+        contrView.hairColor = contrModel.changeColor(contrModel.redValHair, contrModel.greenValHair, contrModel.blueValHair);
+        contrView.eyeColor = contrModel.changeColor(contrModel.redValEyes, contrModel.greenValEyes, contrModel.blueValEyes);
+
+        System.out.println(contrView.skinColor);
         contrView.invalidate();
     }
 
@@ -61,7 +98,7 @@ public class FaceControls implements
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         Log.d("face", "body choice!");
-
+        contrModel.partChoice = checkedId;
     }
 
     @Override
