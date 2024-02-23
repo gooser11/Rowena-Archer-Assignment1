@@ -1,5 +1,9 @@
 package com.example.assignment1_parta;
 
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.GREEN;
+import static android.graphics.Color.WHITE;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,10 +23,10 @@ import java.util.Random;
 public class Face extends SurfaceView {
     //Constants to define the dimensions of character's head
 
-    public static final float headTop = 100f; //y val
-    public static final float headLeft = 100f;
-    public static final float headRight = 200f;
-    public static final float headBottom = 200f;
+    public static final float headTop = 400f; //y val
+    public static final float headLeft = 250f;
+    public static final float headRight = 1000f;
+    public static final float headBottom = 1300f;
 
 
     //paints and color values to draw diff parts of face
@@ -46,13 +50,20 @@ public class Face extends SurfaceView {
         randomize();
 
         //setup palette
-        skinPaint.setColor(0x00FF00); // change later
-        eyePaint.setColor(eyeColor);
+        skinPaint.setColor(GREEN); // change later
+        eyePaint.setColor(BLACK);
         hairPaint.setColor(hairColor);
-        eyeWhites.setColor(0xFFFFFF); // plain white
+        eyeWhites.setColor(WHITE); // plain white
         faceData = new FaceModel();
 
         setBackgroundColor(Color.WHITE);  //better than black default
+
+    }
+
+    public void drawHair(){
+
+
+
 
     }
     public void randomize(){// randomize all values
@@ -64,12 +75,18 @@ public class Face extends SurfaceView {
 
     public void onDraw(Canvas canvas){
         // draw head
-        canvas.drawOval(100f, 100f, 200f, 200f, skinPaint);
+        canvas.drawOval(250f, 400f, 1000f, 1300f, skinPaint);
         // draw eyes
+
+        float incEyes = 200f;//space between eyes
         for(int i = 0; i < 2; i++){
-            canvas.drawOval(0, 0, 0, 0, eyeWhites);
-            canvas.drawOval(0, 0, 0, 0, eyePaint);
+            canvas.drawOval(headLeft + incEyes, headTop + 300f, headLeft + incEyes+140, headTop + 400f, eyeWhites);
+            canvas.drawOval(headLeft + incEyes + 100f, headTop + 330f, headLeft + incEyes+50f, headTop + 380f, eyePaint);
+            incEyes = incEyes + 200f;
         }
+
+        //draw mouth
+        canvas.drawLine(headLeft + incEyes, headTop + 600f, headRight - incEyes, headTop + 600f, eyePaint);
         // draw hair
 
     }

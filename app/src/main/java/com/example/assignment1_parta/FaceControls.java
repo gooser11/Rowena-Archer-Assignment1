@@ -2,9 +2,10 @@ package com.example.assignment1_parta;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
-public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChangeListener{
+public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener {
 
     private Face contrView;
 
@@ -30,7 +31,15 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.d("face", "scroll!");
-        contrView.eyeColor = progress;
+        if (seekBar.getId() == R.id.redBar){
+            contrModel.redVal = progress;
+        }
+        else if (seekBar.getId() == R.id.greenBar){
+            contrModel.greenVal = progress;
+        }
+        else if (seekBar.getId() == R.id.blueBar){
+            contrModel.blueVal = progress;
+        }
         contrView.invalidate();
     }
 
@@ -42,5 +51,11 @@ public class FaceControls implements View.OnClickListener, SeekBar.OnSeekBarChan
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         //nothing
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        Log.d("face", "bodied part!");
+
     }
 }

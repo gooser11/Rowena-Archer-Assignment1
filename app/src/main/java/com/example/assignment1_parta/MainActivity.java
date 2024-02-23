@@ -8,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.SeekBar;
+import android.widget.Button;
+
 
 /**
  * @author Rowena Archer
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         Face myFaceView = findViewById(R.id.faceView);
+        FaceControls control = new FaceControls(myFaceView);
 
         // code from https://www.youtube.com/watch?v=on_OrrX7Nw4
         // "Text Spinner - Android Studio Tutorial" by Coding in FLow
@@ -29,6 +33,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        Button random = findViewById(R.id.randomize);
+        random.setOnClickListener(control);
+
+        SeekBar redBar = findViewById(R.id.redBar);
+        redBar.setOnSeekBarChangeListener(control);
+
+        SeekBar greenBar = findViewById(R.id.greenBar);
+        greenBar.setOnSeekBarChangeListener(control);
+
+        SeekBar blueBar = findViewById(R.id.blueBar);
+        blueBar.setOnSeekBarChangeListener(control);
 
     }
 
